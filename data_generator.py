@@ -3,7 +3,7 @@ import glob
 import os
 import numpy as np
 
-def concatenate_rasters():
+def concatenate_rasters(save=True):
     search_path = "data/*.csv" 
     all_files = glob.glob(search_path, recursive=True)
     processed_dfs = []
@@ -16,5 +16,6 @@ def concatenate_rasters():
         processed_dfs.append(df)
 
     data = pd.concat(processed_dfs, axis=0, ignore_index=True)
-    data.to_csv("data/data.csv", index=False)
+    if save:
+        data.to_csv("data/data.csv", index=False)
     return data
